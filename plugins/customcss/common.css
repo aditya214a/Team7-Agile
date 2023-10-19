@@ -1,0 +1,29 @@
+
+/* icon inner class css */
+
+.cust{
+margin-bottom: 10px;
+}
+
+.iconeye i {
+    position: absolute;
+    right: 21px;
+    top: 6px;
+    height: 100%;
+    cursor: pointer;
+    font-size: 22px;
+}
+
+.iconeye i:hover {
+        color: rgb(70, 133, 184);
+}
+
+.valid{
+    color: rgb(8, 189, 8);
+    margin: 0px;
+}
+
+.invalid{
+    color: rgb(209, 17, 17);
+    margin: 0px;
+}
