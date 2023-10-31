@@ -1,8 +1,6 @@
 <?php include 'includes/session.php'; ?>
 <?php include 'includes/header.php'; ?>
-<?php
-include 'includes/connection.php';
-?>
+<?php include 'includes/connection.php'; ?>
 <style type="text/css">
     .banner-area.bg-1 {
         background: rgba(0, 0, 0, 0) url("assets/images/banners/1.jpg") no-repeat scroll center center / cover;

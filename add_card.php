@@ -33,7 +33,7 @@ if (isset($_POST['add'])) {
         try {
 
             move_uploaded_file($_FILES['passport_photo']['tmp_name'], $target_dir . $filename);
-            $now = date('m/d/Y');
+            $now = date('Y-m-d h:i:sa');
             $waste_type_full = "";
             $count_waste = count($waste_type);
             $count_min = $count_waste - 1;

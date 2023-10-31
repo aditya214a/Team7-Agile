@@ -120,7 +120,7 @@
                     <a class="nav-link" href="#"><text>Shop</text></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><text>Sell Waste</text></a>
+                    <a class="nav-link" href="sell_waste.php"><text>Sell Waste</text></a>
                 </li>
 
                 <li class="nav-item">

@@ -1,10 +1,5 @@
 <?php
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
-
-
 include 'includes/connection.php';
 
 session_start();
