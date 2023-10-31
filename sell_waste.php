@@ -208,7 +208,7 @@ include 'includes/connection.php';
                                             <?php
                                             if (!empty($_SESSION['client_users'])) {
                                             ?>
-                                                <a href="#" class="btn-common card-register brown-btn mt-40" style="background-color:brown;"><i class="fa fa-credit-card-alt mr-2"></i> Card Registration</a>
+                                                <a href="#card_register" class="btn-common card-register brown-btn mt-40" style="background-color:brown;"><i class="fa fa-credit-card-alt mr-2"></i> Card Registration</a>
                                             <?php } else {
                                             ?>
                                                 <a href="login.php" class="btn-common brown-btn mt-40"><i class="fa fa-sign-in"></i> Login</a>
@@ -267,8 +267,7 @@ include 'includes/connection.php';
         </div>
     </div>
     <?php include 'includes/footer.php'; ?>
-    <?php #include 'includes/card_registration_modal.php'; 
-    ?>
+    <?php include 'includes/card_registration_modal.php'; ?>
     <?php include 'includes/scripts.php'; ?>
     <script>
         $(document).on('click', '.card-register', function(e) {
