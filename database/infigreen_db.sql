@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 19, 2023 at 03:52 AM
+-- Generation Time: Oct 31, 2023 at 05:59 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -93,9 +93,8 @@ INSERT INTO `client_details` (`client_id`, `username`, `email`, `contact_no`, `r
 (33, 'dhwaniltest', 'dhwanil@test.com', '9456876123', '122 Graham St', 'Jersey City', 'NJ', 'profile.jpg', '111cddd7d2457c126edac3960206fb7d', 1, NULL, NULL, '2023-10-17'),
 (34, 'adityatest', 'aditya@test.com', '1548795268', '546 North st', 'Jersey City', 'NJ', 'profile.jpg', 'c2d5000465bbd132dccecb32e13fa6e0', 0, NULL, NULL, '2023-10-17'),
 (35, 'infigreentest', 'infigreen@test.com', '9845496318', '45 Hague St', 'Dallas', 'TX', 'krishnaa.jpg', 'bf269f5a791cc5ed7d0bfdeea44f6358', 1, NULL, NULL, '2023-10-17'),
-(37, 'Abcd', 'abcd@123.com', 'Null', 'Null', 'Null', 'Null', 'profile.jpg', 'b3f947379e88aab49c26f395aa0ebaee', 1, 'qxPTuR46dVEt', 'Null', '2023-10-17'),
-(38, 'Abcd123', 'abcd123@123.com', 'Null', 'Null', 'Null', 'Null', 'profile.jpg', '32bc0da7597d6c02b443763ca4edfc55', 1, 'gV9jLRW5Eakp', 'Null', '2023-10-17'),
-(39, 'Jaishreeram', 'jaishreeram@abcd.com', 'Null', 'Null', 'Null', 'Null', 'profile.jpg', '3db66ceb605c1bcb779c63e180c4f2d0', 1, '2nMSRXWYckFZ', 'Null', '2023-10-19');
+(39, 'Jaishreeram', 'jaishreeram@abcd.com', 'Null', 'Null', 'Null', 'Null', 'profile.jpg', '3db66ceb605c1bcb779c63e180c4f2d0', 0, '2nMSRXWYckFZ', 'Null', '2023-10-19'),
+(40, 'Testuser2', 'testuser2@infigreen.com', 'Null', 'Null', 'Null', 'Null', 'profile.jpg', '4159a0a75b2f427763067baf4cd7b9ef', 1, 'qdZS4zioE26U', 'Null', '2023-10-20');
 
 -- --------------------------------------------------------
 
@@ -114,6 +113,20 @@ CREATE TABLE `client_orders` (
   `order_total_amt` varchar(255) NOT NULL,
   `order_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `order_delivered_date` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contact_details`
+--
+
+CREATE TABLE `contact_details` (
+  `contact_id` int(20) NOT NULL,
+  `client_id` bigint(20) NOT NULL,
+  `subject` varchar(20) NOT NULL,
+  `message` text NOT NULL,
+  `created_on_date` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -209,6 +222,30 @@ CREATE TABLE `product_type` (
   `p_type_description` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `waste_deposit`
+--
+
+CREATE TABLE `waste_deposit` (
+  `waste_disposal_id` bigint(20) NOT NULL,
+  `client_id` bigint(20) NOT NULL,
+  `passport_photo` text NOT NULL,
+  `passport_number` int(20) NOT NULL,
+  `waste_deposit_type` varchar(25) NOT NULL,
+  `waste_details` text DEFAULT NULL,
+  `status` varchar(15) NOT NULL DEFAULT 'Not Approved',
+  `request_date` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `waste_deposit`
+--
+
+INSERT INTO `waste_deposit` (`waste_disposal_id`, `client_id`, `passport_photo`, `passport_number`, `waste_deposit_type`, `waste_details`, `status`, `request_date`) VALUES
+(2, 33, 'Screenshot (6).png', 1234567890, 'Household Waste, Agricult', 'NULL', 'Not Approved', '2023-10-31 09:53:15');
+
 --
 -- Indexes for dumped tables
 --
@@ -241,6 +278,13 @@ ALTER TABLE `client_orders`
   ADD KEY `client_id` (`client_id`),
   ADD KEY `p_id` (`p_id`),
   ADD KEY `order_status_id` (`order_status_id`);
+
+--
+-- Indexes for table `contact_details`
+--
+ALTER TABLE `contact_details`
+  ADD PRIMARY KEY (`contact_id`),
+  ADD KEY `contact_details_fbk` (`client_id`);
 
 --
 -- Indexes for table `coupon_details`
@@ -285,6 +329,13 @@ ALTER TABLE `product_type`
   ADD PRIMARY KEY (`p_type_id`);
 
 --
+-- Indexes for table `waste_deposit`
+--
+ALTER TABLE `waste_deposit`
+  ADD PRIMARY KEY (`waste_disposal_id`),
+  ADD KEY `waste_disposal_details_fbk` (`client_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -304,13 +355,19 @@ ALTER TABLE `cart_details`
 -- AUTO_INCREMENT for table `client_details`
 --
 ALTER TABLE `client_details`
-  MODIFY `client_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `client_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `client_orders`
 --
 ALTER TABLE `client_orders`
   MODIFY `order_id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `contact_details`
+--
+ALTER TABLE `contact_details`
+  MODIFY `contact_id` int(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `coupon_details`
@@ -349,6 +406,12 @@ ALTER TABLE `product_type`
   MODIFY `p_type_id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `waste_deposit`
+--
+ALTER TABLE `waste_deposit`
+  MODIFY `waste_disposal_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- Constraints for dumped tables
 --
 
@@ -366,6 +429,12 @@ ALTER TABLE `client_orders`
   ADD CONSTRAINT `client_orders_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `client_details` (`client_id`),
   ADD CONSTRAINT `client_orders_ibfk_2` FOREIGN KEY (`p_id`) REFERENCES `product_details` (`p_id`),
   ADD CONSTRAINT `client_orders_ibfk_3` FOREIGN KEY (`order_status_id`) REFERENCES `order_status` (`order_status_id`);
+
+--
+-- Constraints for table `contact_details`
+--
+ALTER TABLE `contact_details`
+  ADD CONSTRAINT `contact_details_fbk` FOREIGN KEY (`client_id`) REFERENCES `client_details` (`client_id`);
 
 --
 -- Constraints for table `coupon_details`
@@ -392,6 +461,12 @@ ALTER TABLE `product_category`
 ALTER TABLE `product_details`
   ADD CONSTRAINT `product_details_ibfk_1` FOREIGN KEY (`p_type_id`) REFERENCES `product_type` (`p_type_id`),
   ADD CONSTRAINT `product_details_ibfk_2` FOREIGN KEY (`p_category_id`) REFERENCES `product_category` (`p_category_id`);
+
+--
+-- Constraints for table `waste_deposit`
+--
+ALTER TABLE `waste_deposit`
+  ADD CONSTRAINT `waste_disposal_details_fbk` FOREIGN KEY (`client_id`) REFERENCES `client_details` (`client_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
