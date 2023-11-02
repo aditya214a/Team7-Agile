@@ -58,7 +58,7 @@
                     <th>Admin Handled</th>
                     <th>Waste Disposal ID</th>
                     <th>Waste Disposal Type</th>
-                    <th>Waste Weight</th>
+                    <th>Waste Weight (lbs)</th>
                     <th>Account Points</th>
                     <th>Tools</th>
                   </thead>
@@ -102,11 +102,30 @@
     <?php include 'includes/footer.php'; ?>
     <?php include 'includes/iws_card_details_modal.php'; ?>
 
-
   </div>
   <!-- ./wrapper -->
 
   <?php include 'includes/scripts.php'; ?>
+
+  <script>
+    $(function() {
+      $(document).on('click', '.edit', function(e) {
+        e.preventDefault();
+        $('#edit').modal('show');
+        var card_id = $(this).data('id');
+        $("#edit #card_id").val(card_id);
+
+        $.ajax({
+          type: 'post',
+          url: 'iws_card_details_update.php',
+          data: {},
+          success: function(data) {
+            $('#waste_disposal_id').html(data);
+          }
+        });
+      });
+    });
+  </script>
 
 
 </body>
