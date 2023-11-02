@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 02, 2023 at 04:45 AM
+-- Generation Time: Nov 02, 2023 at 12:51 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -129,6 +129,14 @@ CREATE TABLE `contact_details` (
   `created_on_date` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `contact_details`
+--
+
+INSERT INTO `contact_details` (`contact_id`, `client_id`, `subject`, `message`, `created_on_date`) VALUES
+(1, 33, 'hello world', 'hey there test 1 done.', '2023-11-02 11:14:35'),
+(2, 33, 'hello world test 2', 'hey ther doing test 2.', '2023-11-02 11:15:04');
+
 -- --------------------------------------------------------
 
 --
@@ -156,6 +164,13 @@ CREATE TABLE `iws_card_details` (
   `waste_weight` decimal(10,0) NOT NULL,
   `deposit_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `iws_card_details`
+--
+
+INSERT INTO `iws_card_details` (`iws_card_id`, `admin_id`, `waste_disposal_id`, `card_points`, `waste_weight`, `deposit_time`) VALUES
+(1, 1, 3, 50, '2', '2023-11-02 07:51:37');
 
 -- --------------------------------------------------------
 
@@ -259,7 +274,8 @@ CREATE TABLE `waste_deposit` (
 --
 
 INSERT INTO `waste_deposit` (`waste_disposal_id`, `client_id`, `passport_photo`, `passport_number`, `waste_deposit_type`, `waste_details`, `status`, `request_date`) VALUES
-(2, 33, 'Screenshot (6).png', 1234567890, 'Household Waste, Agricult', 'NULL', 'Not Approved', '2023-10-31 09:53:15');
+(2, 33, 'Screenshot (6).png', 1234567890, 'Household Waste, Agricult', 'NULL', 'Not Approved', '2023-10-31 09:53:15'),
+(3, 33, 'Screenshot (12).png', 125789, 'Household Waste, Medical ', 'all waste.', 'Not Approved', '2023-11-02 11:37:36');
 
 --
 -- Indexes for dumped tables
@@ -390,7 +406,7 @@ ALTER TABLE `client_orders`
 -- AUTO_INCREMENT for table `contact_details`
 --
 ALTER TABLE `contact_details`
-  MODIFY `contact_id` int(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `contact_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `coupon_details`
@@ -402,7 +418,7 @@ ALTER TABLE `coupon_details`
 -- AUTO_INCREMENT for table `iws_card_details`
 --
 ALTER TABLE `iws_card_details`
-  MODIFY `iws_card_id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `iws_card_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `order_status`
@@ -438,7 +454,7 @@ ALTER TABLE `product_type`
 -- AUTO_INCREMENT for table `waste_deposit`
 --
 ALTER TABLE `waste_deposit`
-  MODIFY `waste_disposal_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `waste_disposal_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
