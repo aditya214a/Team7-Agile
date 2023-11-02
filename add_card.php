@@ -25,7 +25,7 @@ if (isset($_POST['add'])) {
         $_SESSION['error'] = "Atleast One Waste Type You Need to Select!";
         header('location:sell_waste.php');
         exit;
-    } else if (!preg_match('/^[a-zA-Z]*$/', $waste_details)) {
+    } else if (!preg_match('/^[a-zA-Z. ]*$/', $waste_details)) {
         $_SESSION['error'] = " No Special Character or Numbers Allowed!";
         header('location:sell_waste.php');
         exit;
@@ -49,8 +49,17 @@ if (isset($_POST['add'])) {
             if (empty($waste_details)) {
                 $waste_details = "NULL";
             }
-            $insert_query = "INSERT INTO waste_deposit(client_id,passport_photo,passport_number,waste_deposit_type,waste_details,status,request_date) VALUES(" . $client_query['client_id'] . ",'$filename',$passport_no,'$waste_type_full','$waste_details','Not Approved','$now')";
+
+            $client_id = $_SESSION['client_id'];
+            $insert_query = "INSERT INTO waste_deposit(client_id,passport_photo,passport_number,waste_deposit_type,waste_details,status,request_date) VALUES($client_id,'$filename',$passport_no,'$waste_type_full','$waste_details','Not Approved','$now')";
             mysqli_query($conn, $insert_query);
+
+            $fetch_waste_id = "SELECT waste_disposal_id FROM waste_deposit WHERE client_id=$client_id";
+            $fetch_waste_id_exec = mysqli_query($conn, $fetch_waste_id);
+            $fetch_waste_id_data = mysqli_fetch_assoc($fetch_waste_id_exec);
+
+            $insert_card_query = "INSERT INTO iws_card_details(admin_id,waste_disposal_id,card_points,waste_weight,deposit_time) VALUES(1," . $fetch_waste_id_data['waste_disposal_id'] . ",0,0.00,'$now')";
+            mysqli_query($conn, $insert_card_query);
 
 
             $_SESSION['success'] = 'You Have Successfully Registered For InfiGreen Card. We Have Mailed you All Details. As of know Card is Inactive, Our team will first Verify the details.';
