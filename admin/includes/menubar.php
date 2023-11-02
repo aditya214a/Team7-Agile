@@ -49,6 +49,15 @@
       <?php } ?>
       <li class="header">WASTE DETAILS</li>
       <li><a href="waste_deposit.php"><i class="fa fa-cubes"></i> <span>Waste Deposit</span></a></li>
+      <li class="header">IWS Card Manage</li>
+      <!-- if root user -->
+      <?php if ($power_row['power'] == 'Root User') { ?>
+        <li><a href="iws_card_details.php"><i class="fa fa-credit-card"></i> <span>IWS Card Details</span></a></li>
+      <?php } ?>
+      <!-- if general user -->
+      <?php if ($power_row['power'] == 'General User') { ?>
+        <li><a href="#" class="disabled-link" style="color: grey; cursor:pointer;"><i class="fa fa-credit-card"></i> <span>IWS Card Details</span></a></li>
+      <?php } ?>
     </ul>
   </section>
   <!-- /.sidebar -->
