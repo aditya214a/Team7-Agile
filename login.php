@@ -22,6 +22,7 @@ if (isset($_POST['login'])) {
 		$_SESSION['error'] = "Your Account is Not Activated! Please Activate It!";
 	} else {
 		$_SESSION['client_users'] = $uname;
+		$_SESSION['client_id'] = $check_activation['client_id'];
 		$_SESSION['success'] = "Welcome " . $uname . " to Infigreen World! Namaste :)";
 		mysqli_close($conn);
 		header('location: index.php');

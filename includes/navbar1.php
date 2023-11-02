@@ -124,7 +124,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#contact"><text>Contact Us</text></a>
+                    <a class="nav-link" href="contact_us.php"><text>Contact Us</text></a>
                 </li>
             </ul>
         </div>
