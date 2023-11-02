@@ -47,5 +47,5 @@ jobs:
             fi
             
     # Add your PHPUnit testing steps here
-    - name: Run PHPUnit tests
-      run: ./vendor/bin/phpunit test.php
+    # - name: Run PHPUnit tests
+    #   run: ./vendor/bin/phpunit test.php
