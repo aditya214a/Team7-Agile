@@ -183,6 +183,7 @@
                         <div class="service-area mt-minus-100 sm-mt-80">
                             <div class="container">
                                 <div class="row">
+                                    <div class="col-lg-2 col-md-3 col-sm-6"> </div>
                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                         <div class="sin-service">
                                             <img src="assets/images/projects/13.jpg" alt="promo">
@@ -191,6 +192,15 @@
                                             <a href="https://swapeco.com/blog/lets-recycle-and-save-the-earth/" class="readmore">Read More</a>
                                         </div>
                                     </div>
+                                    <div class="col-lg-4 col-md-6 col-sm-12 d-lg-block d-md-none">
+                                        <div class="sin-service">
+                                            <img src="assets/images/projects/14.jpg" alt="promo">
+                                            <h3>Waste to Wealth: Crowded Planet</h3>
+                                            <p>Don't be distracted by criticism. Remember the only taste of success.</p>
+                                            <a href="https://www.greenbiz.com/article/how-make-wealth-waste-crowded-planet" class="readmore">Read More</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-3 col-sm-6"> </div>
                                 </div>
                             </div>
                         </div><br>
@@ -259,6 +269,39 @@
                             </div>
                         </div>
                         <!--benefit-area end-->
+                        <!-- Latest News start -->
+                        <div class="blog-area mt-40 sm-mt-57">
+                            <div class="container">
+                                <div class="row">
+                                    <!-- Header News -->
+                                    <div class="col-sm-2"></div>
+                                    <div class="col-sm-8">
+                                        <div class="section-title style-2">
+                                            <h2>Latest News</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- News -->
+                                <div class="row mt-35">
+                                    <div class="col-lg-4 col-md-6 col-sm-12"></div>
+                                    <div class="col-lg-4 d-lg-block col-md-6 d-md-none col-sm-12">
+                                        <div class="single-blog">
+                                            <div class="blog-thumb">
+                                                <a href="#"><img src="assets/images/blog/9.jpg" alt="blog-image"></a>
+                                            </div>
+                                            <div class="blog-desc">
+                                                <h3><a href="https://invinciblehouseplants.com/blog/holidays">PLANT WATERING TIPS TO USE WHEN YOU'RE AWAY</a></h3>
+                                                <p>Many of us are rightfully concerned about indoor plants maintenance. That's usually a reason for not bringing any leafy plant inside the home; at most we allow a cacti or two, but that's generally it.</p>
+                                                <a href="https://invinciblehouseplants.com/blog/holidays" class="readmore">Read More</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 col-sm-12"></div>
+                                </div>
+                                <!-- News End-->
+                            </div>
+                        </div>
+                        <!-- Latest News End -->
                     </div>
                 </div>
             </section>
