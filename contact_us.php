@@ -2,7 +2,32 @@
 <?php include 'includes/header.php'; ?>
 <?php include 'includes/connection.php';
 
+$subject_nm = @$_POST['sub_name'];
+$message = @$_POST['message'];
 
+$subject_Err = $msg_Err = "";
+
+if (isset($_POST['addmessage'])) {
+
+    if ($subject_nm == "") {
+        $subject_Err = "* You Forgot to Enter Subject Name!";
+    } else if ($message == "") {
+        $msg_Err = "* You Forgot to Enter Message!";
+    } else {
+        try {
+            $client_id = $_SESSION['client_id'];
+            $now = date('Y-m-d h:i:sa');
+
+            $insert_query = "INSERT INTO contact_details(client_id,subject,message,created_on_date) values($client_id,'$subject_nm','$message','$now')";
+
+            mysqli_query($conn, $insert_query);
+            $_SESSION['success'] = ' Submitted Successfully.';
+            mysqli_close($conn);
+        } catch (Exception $e) {
+            $_SESSION['error'] = $e->getMessage();
+        }
+    }
+}
 
 ?>
 
@@ -14,6 +39,11 @@
     }
 
     .btn-common {
+        color: aliceblue;
+        border-radius: 5px;
+    }
+
+    .btn-common:hover {
         color: aliceblue;
         border-radius: 5px;
     }
@@ -169,7 +199,7 @@
                                             <div class="row form-group">
                                                 <label for="subject" class="col-sm-4 control-label">Subject Name</label>
                                                 <div class="col-sm-5">
-                                                    <input type="text" class="form-control" id="sub_name" name="sub_name" placeholder="subject name" required></input>
+                                                    <input type="text" class="form-control" id="sub_name" name="sub_name" placeholder="subject name" value="<?php echo $subject_nm ?>" required></input>
                                                 </div>
                                                 <p class="invalid"><?php if (isset($subject_Err)) echo $subject_Err; ?></p>
                                             </div>
@@ -183,7 +213,7 @@
                                             <div class="row form-group">
                                                 <label for="message" class="col-sm-4 control-label">Message</label>
                                                 <div class="col-sm-5">
-                                                    <textarea type="text" class="form-control " id="message" name="message" placeholder="Write Down Your Message Here..." rows="5" required></textarea>
+                                                    <textarea type="text" class="form-control " id="message" name="message" placeholder="Write Down Your Message Here..." rows="5" value="<?php echo $message ?>" required></textarea>
                                                 </div>
                                                 <p class="invalid"><?php if (isset($msg_Err)) echo $msg_Err; ?></p>
                                             </div>
