@@ -47,6 +47,8 @@
       <?php if ($power_row['power'] == 'General User') { ?>
         <li><a href="#" class="disabled-link" style="color: grey; cursor:pointer;"><i class="fa fa-users"></i> <span>Client Users</span></a></li>
       <?php } ?>
+      <li class="header">WASTE DETAILS</li>
+      <li><a href="waste_deposit.php"><i class="fa fa-cubes"></i> <span>Waste Deposit</span></a></li>
     </ul>
   </section>
   <!-- /.sidebar -->
