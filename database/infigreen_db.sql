@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 31, 2023 at 05:59 AM
+-- Generation Time: Nov 02, 2023 at 04:45 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -140,6 +140,21 @@ CREATE TABLE `coupon_details` (
   `p_id` bigint(20) NOT NULL,
   `coupon_price` varchar(255) NOT NULL,
   `coupon_code` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `iws_card_details`
+--
+
+CREATE TABLE `iws_card_details` (
+  `iws_card_id` bigint(20) NOT NULL,
+  `admin_id` bigint(20) NOT NULL,
+  `waste_disposal_id` bigint(20) NOT NULL,
+  `card_points` int(20) NOT NULL,
+  `waste_weight` decimal(10,0) NOT NULL,
+  `deposit_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -294,6 +309,14 @@ ALTER TABLE `coupon_details`
   ADD KEY `p_id` (`p_id`);
 
 --
+-- Indexes for table `iws_card_details`
+--
+ALTER TABLE `iws_card_details`
+  ADD PRIMARY KEY (`iws_card_id`),
+  ADD KEY `iws_card_fbk` (`admin_id`),
+  ADD KEY `iws_card_fbk2` (`waste_disposal_id`);
+
+--
 -- Indexes for table `order_status`
 --
 ALTER TABLE `order_status`
@@ -376,6 +399,12 @@ ALTER TABLE `coupon_details`
   MODIFY `coupon_id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `iws_card_details`
+--
+ALTER TABLE `iws_card_details`
+  MODIFY `iws_card_id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `order_status`
 --
 ALTER TABLE `order_status`
@@ -441,6 +470,13 @@ ALTER TABLE `contact_details`
 --
 ALTER TABLE `coupon_details`
   ADD CONSTRAINT `coupon_details_ibfk_1` FOREIGN KEY (`p_id`) REFERENCES `product_details` (`p_id`);
+
+--
+-- Constraints for table `iws_card_details`
+--
+ALTER TABLE `iws_card_details`
+  ADD CONSTRAINT `iws_card_fbk` FOREIGN KEY (`admin_id`) REFERENCES `admin_details` (`admin_id`),
+  ADD CONSTRAINT `iws_card_fbk2` FOREIGN KEY (`waste_disposal_id`) REFERENCES `waste_deposit` (`waste_disposal_id`);
 
 --
 -- Constraints for table `payment_status`
