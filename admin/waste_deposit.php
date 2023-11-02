@@ -2,6 +2,22 @@
 <?php include 'includes/header.php'; ?>
 <?php
 include 'includes/connection.php';
+
+if (isset($_GET['waste_id_a'])) {
+  $waste_id_a = @$_GET['waste_id_a'];
+
+  $update_query = "UPDATE waste_deposit SET status='Approved' WHERE waste_disposal_id=$waste_id_a";
+  $update_query_exec = mysqli_query($conn, $update_query);
+  $_SESSION['success'] = "Status Updated Successfully.";
+}
+if (isset($_GET['waste_id_na'])) {
+  $waste_id_na = @$_GET['waste_id_na'];
+
+  $update_query = "UPDATE waste_deposit SET status='Not Approved' WHERE waste_disposal_id=$waste_id_na";
+  $update_query_exec = mysqli_query($conn, $update_query);
+  $_SESSION['success'] = "Status Updated Successfully.";
+}
+
 ?>
 <style>
   .c-approved {
@@ -36,6 +52,28 @@ include 'includes/connection.php';
 
       <!-- Main content -->
       <section class="content">
+        <?php
+        if (isset($_SESSION['error'])) {
+          echo "
+            <div class='alert alert-danger alert-dismissible'>
+              <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
+              <h4><i class='icon fa fa-warning'></i> Error!</h4>
+              " . $_SESSION['error'] . "
+            </div>
+          ";
+          unset($_SESSION['error']);
+        }
+        if (isset($_SESSION['success'])) {
+          echo "
+            <div class='alert alert-success alert-dismissible'>
+              <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
+              <h4><i class='icon fa fa-check'></i> Success!</h4>
+              " . $_SESSION['success'] . "
+            </div>
+          ";
+          unset($_SESSION['success']);
+        }
+        ?>
         <div class="row">
           <div class="col-xs-12">
             <div class="box">
@@ -52,6 +90,7 @@ include 'includes/connection.php';
                     <th>Waste Details</th>
                     <th>Status</th>
                     <th>Request Date</th>
+                    <th>Tools</th>
                   </thead>
                   <tbody>
                     <?php
@@ -87,6 +126,9 @@ include 'includes/connection.php';
                           <td style='vertical-align: middle; text-align: center;'>" . $row['waste_details'] . "</td>
                           <td style='vertical-align: middle; text-align: center;' class=" . $c_status . ">" . $status . "</td>
                           <td style='vertical-align: middle;text-align: center;'>" . date('M d, Y', strtotime($row['request_date'])) . "</td>
+                          <td style='vertical-align: middle;'>
+                              " . $an_status . "
+                          </td>
                           </tr>
                         ";
                       }
