@@ -43,8 +43,6 @@
     .product-action .add-to-cart {
         color: aliceblue;
     }
-
-    
 </style>
 
 <body class="hold-transition skin-blue layout-top-nav">
@@ -149,9 +147,10 @@
                                                     echo '</div>';
                                                 }
                                             }
-                                            /* No Records In Table then Rows are 0 */ 
+                                            /* No Records In Table then Rows are 0 */
+
+                                            /* No Records In Table then Rows are 0 */
                                         }
-                                        /* No Records In Table then Rows are 0 */                                         }
                                         ?>
 
                                     </div>
