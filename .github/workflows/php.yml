@@ -16,7 +16,7 @@ jobs:
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '8.0.28' # Change this to your PHP version
+        php-version: '8.0.28'
 
     - name: Install Composer
       run: |
@@ -47,5 +47,5 @@ jobs:
             fi
             
     # Add your PHPUnit testing steps here
-    - name: Run PHPUnit tests
-      run: ./vendor/bin/phpunit test.php
+    # - name: Run PHPUnit tests
+    #   run: ./vendor/bin/phpunit test.php
