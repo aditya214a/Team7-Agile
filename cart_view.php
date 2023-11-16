@@ -14,7 +14,10 @@ if (!empty($_GET['cpd_id'])) {
     $delete_query_execute = mysqli_query($conn, $delete_query);
     $_SESSION['success'] = "Item Removed Successfully!";
 }
+$cart_query = "SELECT *,pd.p_name,pd.p_price from cart_details as cd, product_details as pd where  cd.p_id=pd.p_id  and client_id=" . $client_query['client_id'] . "";
 
+$cart_query_execute = mysqli_query($conn, $cart_query);
+$query_row_no = mysqli_num_rows($cart_query_execute);
 
 ?>
 <html>
@@ -89,6 +92,57 @@ if (!empty($_GET['cpd_id'])) {
         text-transform: capitalize;
         font-size: smaller;
         width: fit-content;
+    }
+
+    /* left footer btn */
+    .footer-btn.left a {
+        font-weight: 500;
+        padding: 15px;
+        text-transform: capitalize;
+        font-size: small;
+        width: fit-content;
+        color: #333;
+        background-color: #fff;
+        border-color: #ccc;
+    }
+
+    .footer-btn.left a:hover {
+        color: #333;
+        background-color: #d4d4d4;
+        border-color: #8c8c8c;
+    }
+
+    /* right footer btn */
+    .footer-btn.right button {
+        font-weight: 500;
+        padding: 15px;
+        text-transform: capitalize;
+        font-size: small;
+        width: fit-content;
+        color: #333;
+        background-color: #fff;
+        border-color: #ccc;
+    }
+
+    .footer-btn.right button:hover {
+        color: #333;
+        background-color: #d4d4d4;
+        border-color: #8c8c8c;
+    }
+
+    .footer-btn.right a {
+        font-weight: 500;
+        padding: 15px;
+        padding-inline-start: 9px;
+        text-transform: capitalize;
+        font-size: small;
+        width: fit-content;
+    }
+
+    /* price css */
+    .save-price {
+        color: #62a916;
+        font-size: larger;
     }
 
     .mrp-price {
@@ -252,6 +306,33 @@ if (!empty($_GET['cpd_id'])) {
                                                             ?>
                                                         </tbody>
                                                         <!-- tbody Ends -->
+                                                        <!-- tfoot Starts -->
+                                                        <tfoot>
+                                                            <tr>
+                                                                <th style="padding-top: 14px;text-align: end;"></th>
+                                                                <th class="pl-0" style="display:inline-flex;" colspan="2">
+                                                                </th>
+                                                                <th colspan="2" style="vertical-align:middle;text-align: end;">
+                                                                    <?php if ($check == 1) {
+                                                                        echo "<label class='save-price'>Discount:</label></br>";
+                                                                    } ?>
+                                                                    <label class="price-tag">Total Points:</label>
+                                                                </th>
+                                                                <th style="vertical-align:middle;">
+                                                                    <?php
+                                                                    if ($check == 1) {
+                                                                        echo "<label class='save-price'>-" . $finalsave . " pts</label></br>";
+                                                                        $_SESSION['finalsave'] = $finalsave;
+                                                                    }
+                                                                    ?>
+                                                                    <?php
+                                                                    echo "<label class='total-price price-tag'>" . $final . " pts</label>";
+                                                                    $_SESSION['final'] = $final;
+                                                                    ?>
+                                                                </th>
+                                                            </tr>
+                                                        </tfoot>
+                                                        <!-- tfoot Ends -->
                                                     </table>
                                                     <!-- table Ends -->
                                                 </div>
@@ -259,6 +340,28 @@ if (!empty($_GET['cpd_id'])) {
                                             <?php } ?>
 
                                             <div class="box-footer"><!-- box-footer Starts -->
+                                                <div class="pull-left footer-btn left"><!-- pull-left Starts -->
+                                                    <a href="index.php" class="btn btn-default">
+                                                        <i class="fa fa-chevron-left"></i> Continue Shopping
+                                                    </a>
+                                                </div><!-- pull-left Ends -->
+                                                <!-- Checkout Button -->
+                                                <?php
+                                                if ($query_row_no == 0) {
+                                                } else {
+                                                ?>
+                                                    <div class="pull-right footer-btn right">
+
+                                                        <?php
+                                                        echo '
+                                                            <a href="#" class="btn btn-primary">
+                                                            Proceed to Checkout <i class="fa fa-chevron-right"></i>
+                                                            </a>
+                                                            ';
+                                                        ?>
+
+                                                    </div><!-- pull-right Ends -->
+                                                <?php } ?>
 
                                             </div><!-- box-footer Ends -->
 
