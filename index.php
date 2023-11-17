@@ -170,7 +170,7 @@
 										<div class="banner-text style-3 text-black text-center mt-minus-10">
 											<h2>We Are <br /> The Best Choice</h2>
 											<p class="mt-35">We as some of the most trustworthy online nurseries are offer plants suitable for your zone with excellent shipping practices, including the timing of delivery.<br /> We know what plants can be delivered to your region</p>
-											<a href="#shop" class="btn-common mt-40">Shop Now</a>
+											<a href="product_type.php" class="btn-common mt-40">Shop Now</a>
 										</div>
 									</div>
 								</div>

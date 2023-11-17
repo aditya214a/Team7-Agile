@@ -140,10 +140,18 @@
                 <label class="cart-item">
                     <?php
                     include 'connection.php';
-                    echo '0';
+
+                    if (isset($_SESSION['client_users'])) {
+                        $cart_q = "SELECT cart_id FROM cart_details where client_id=" . $client_query['client_id'] . "";
+                        $cart_q_execute = mysqli_query($conn, $cart_q);
+                        $cart_item = mysqli_num_rows($cart_q_execute);
+                        echo $cart_item;
+                    } else {
+                        echo '0';
+                    }
                     ?>
                 </label>
-                <a href="#" class="nav-link">
+                <a href="cart_view.php" class="nav-link">
                     <i class="fa fa-shopping-cart"></i>
                     <span>Cart</span>
                 </a>
