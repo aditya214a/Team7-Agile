@@ -43,6 +43,46 @@
     .product-action .add-to-cart {
         color: aliceblue;
     }
+
+    /* product text css */
+    .product-text h4 a {
+        font-family: cursive;
+        color: #444;
+    }
+
+    .product-text h4 a:hover {
+        color: forestgreen;
+    }
+
+    .product-text {
+        margin-top: 13px;
+    }
+
+    .product-sale-price {
+        text-decoration: line-through;
+        color: gray;
+    }
+
+    .product-text>.product-price {
+        color: #464444;
+        font-family: 'Delius Swash Caps';
+        font-weight: 600;
+    }
+
+    /* extra css */
+    .style-6 h2 {
+        font-family: cursive;
+        font-size: 28px
+    }
+
+    .style-6 a {
+        color: aliceblue;
+        border-radius: 5px;
+    }
+
+    .style-6 a:hover {
+        color: aliceblue;
+    }
 </style>
 
 <body class="hold-transition skin-blue layout-top-nav">
@@ -147,9 +187,38 @@
                                                     echo '</div>';
                                                 }
                                             }
-                                            /* No Records In Table then Rows are 0 */
-
-                                            /* No Records In Table then Rows are 0 */
+                                            /* No Records In Table then Rows are 0 */ else {
+                                                echo '
+                                                        <div class="service-area">
+                                                            <div class="container-fluid">
+                                                                <div class="row">
+                                                                    <div class="col-lg-8 offset-lg-2">
+                                                                        <div class="section-title style-6">
+                                                                            <h2>No Product In these Category Available🤷‍♂️</h2>
+                                                                            <a href="product_category.php" class="btn-common">Select Another Category</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    ';
+                                            }
+                                        }
+                                        /* No Records In Table then Rows are 0 */ else {
+                                            echo '
+                                                    <div class="service-area">
+                                                        <div class="container-fluid">
+                                                            <div class="row">
+                                                                <div class="col-lg-8 offset-lg-2">
+                                                                    <div class="section-title style-6">
+                                                                        <h2>🍀First You Need To Select Product Category🍀</h2>
+                                                                        <a href="product_category.php" class="btn-common">Select Category</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                ';
                                         }
                                         ?>
 
