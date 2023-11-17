@@ -163,7 +163,7 @@
                                         <!-- User image -->
                                         <li class="user-header" style="background-color: #17354b;">
                                             <img src="admin/uploaded_images/client_images/' . $client_query['image'] . '" class="img-circle" style="height: 95px; width: 95px; border-radius: 25%;" alt="Client Image" />
-                                            <a href="#">
+                                            <a href="profile.php">
                                                 ' . $client_query['username'] . '   
                                             </a>
                                         </li>
