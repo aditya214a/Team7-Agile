@@ -140,7 +140,6 @@ if (isset($_GET['client_id_d'])) {
                           <td style='vertical-align: middle;' class=" . $c_status . ">" . $status . "</td>
                           <td style='vertical-align: middle;'>" . date('M d, Y', strtotime($row['created_on_date'])) . "</td>
                           <td style='vertical-align: middle;'>
-                              <button class='btn btn-danger btn-sm delete btn-lg' data-id='" . $row['client_id'] . "'><i class='fa fa-trash'></i> Delete</button><br>
                               " . $ac_dc_status . "
                           </td>
                           </tr>
@@ -161,25 +160,11 @@ if (isset($_GET['client_id_d'])) {
 
     </div>
     <?php include 'includes/footer.php'; ?>
-    <?php include 'includes/client_users_modal.php'; ?>
 
   </div>
   <!-- ./wrapper -->
 
   <?php include 'includes/scripts.php'; ?>
-
-  <script>
-    $(function() {
-
-      $(document).on('click', '.delete', function(e) {
-        e.preventDefault();
-        $('#delete').modal('show');
-        var userid = $(this).data('id');
-        $("#delete #userid").val(userid);
-        return false;
-      });
-    });
-  </script>
 </body>
 
 </html>
