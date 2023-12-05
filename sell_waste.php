@@ -214,11 +214,30 @@
                                             <h2>Selling Waste <br /> To InfiGreen A Best Choice</h2>
                                             <p class="mt-35">If you want to <b>SELL</b> your <b>WASTE</b> to InfiGreen you Need to <b>Apply</b> for <b>InfiGreen Card</b>. It will <b>Generate a Card</b> which helps you to Sell your waste to Nearby <b>InfiGreen Waste Center</b>. So amount will be Credited to your Card. From this you can Give a <b>Nature Beauty</b> to your <b>Homes or Workspace.</b></p>
                                             <?php
+
                                             if (!empty($_SESSION['client_users'])) {
+                                                $waste_regi = "SELECT client_id from waste_deposit where client_id={$_SESSION['client_id']} LIMIT 1";
+                                                $waste_regi_execute = mysqli_query($conn, $waste_regi);
+                                                $waste_regi_output = mysqli_fetch_assoc($waste_regi_execute);
+
+                                                if (@$waste_regi_output['client_id'] === $_SESSION['client_id']) {
                                             ?>
-                                                <a href="#card_register" class="btn-common card-register brown-btn mt-40" style="background-color:brown;"><i class="fa fa-credit-card-alt mr-2"></i> Card Registration</a>
-                                            <?php } else {
-                                            ?>
+                                                    <a href="profile.php" class="btn btn-success btn-lg mt-40"><i class="fa fa-credit-card-alt mr-2"></i> Visit Card Profile</a>
+
+                                                    <form action="downloadbarcode.php" method="post">
+                                                        <button type="submit" class="btn btn-info btn-lg mt-20" name="download"><i class="fa fa-download mr-2"></i>Barcode</button>
+                                                    </form>
+
+                                                    <form action="downloadwastefile.php" method="post">
+                                                        <button type="submit" class="btn btn-info btn-lg mt-20" name="download"><i class="fa fa-download mr-2"></i>Category List</button>
+                                                    </form>
+                                                <?php
+                                                } else {
+                                                ?>
+                                                    <a href="#card_register" class="btn-common card-register brown-btn mt-40" style="background-color:brown;"><i class="fa fa-credit-card-alt mr-2"></i> Card Registration</a>
+                                                <?php }
+                                            } else {
+                                                ?>
                                                 <a href="login.php" class="btn-common brown-btn mt-40"><i class="fa fa-sign-in"></i> Login</a>
                                             <?php
                                             }

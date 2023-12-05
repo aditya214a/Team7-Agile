@@ -9,20 +9,6 @@
             </div>
             <div class="modal-body">
                 <form class="form-horizontal" method="POST" action="add_card.php" enctype="multipart/form-data">
-                    <!-- aadhaar number -->
-                    <div class="form-group">
-                        <label for="passport_number" class="col-sm-4 control-label">Passport Number<color style="color:red; font-size:large;">*</color></label>
-                        <div class="col-sm-8 modal-form">
-                            <input type="text" class="form-control" id="passport_number" name="passport_number" placeholder="Enter Passport Numberr" required>
-                        </div>
-                    </div>
-                    <!-- aadhaar photo -->
-                    <div class="form-group">
-                        <label for="passport_photo" class="col-sm-4 control-label">Passport Front Photo<color style="color:red; font-size:large;">*</color></label>
-                        <div class="col-sm-8">
-                            <input type="file" id="passport_photo" name="passport_photo" required>
-                        </div>
-                    </div>
                     <!-- Waste Type -->
                     <div class="form-group">
                         <label for="waste_type" class="col-sm-4 control-label">Waste Type<color style="color:red; font-size:large;">*</color></label>
