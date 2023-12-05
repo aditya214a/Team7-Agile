@@ -174,8 +174,8 @@ if (isset($_GET['client_id_d'])) {
       $(document).on('click', '.delete', function(e) {
         e.preventDefault();
         $('#delete').modal('show');
-        var card_id = $(this).data('id');
-        $("#delete #cardid").val(ard_id);
+        var userid = $(this).data('id');
+        $("#delete #userid").val(userid);
         return false;
       });
     });
