@@ -20,6 +20,7 @@ if (isset($_POST['login'])) {
 		$user_pass_query = "SELECT * FROM admin_details WHERE username='$uname' AND password='$encpass'";
 
 		$user_result = mysqli_query($conn, $user_query);
+		$user_final_result = mysqli_fetch_assoc($user_result);
 		$user_pass_result = mysqli_query($conn, $user_pass_query);
 		if (mysqli_num_rows($user_result) != 1) {
 			$_SESSION['error'] = "Username is Invalid!";
@@ -27,6 +28,7 @@ if (isset($_POST['login'])) {
 			$_SESSION['error'] = "Password is Invalid!";
 		} else {
 			$_SESSION['users'] = $uname;
+			$_SESSION['admin_id'] = $user_final_result['admin_id'];
 			$_SESSION['success'] = "You are now logged in Successfully";
 			mysqli_close($conn);
 			header('location: home.php');

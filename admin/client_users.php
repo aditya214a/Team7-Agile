@@ -160,11 +160,14 @@ if (isset($_GET['client_id_d'])) {
 
     </div>
     <?php include 'includes/footer.php'; ?>
+    <?php include 'includes/client_users_modal.php'; ?>
 
   </div>
   <!-- ./wrapper -->
 
   <?php include 'includes/scripts.php'; ?>
+
+
 </body>
 
 </html>

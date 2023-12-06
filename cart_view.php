@@ -12,10 +12,11 @@ if (empty($_SESSION['client_users'])) {
 if (!empty($_GET['cpd_id'])) {
     $delete_query = "DELETE FROM cart_details WHERE cart_id=" . $_GET['cpd_id'] . "";
     $delete_query_execute = mysqli_query($conn, $delete_query);
+    unset($_SESSION['final']);
+    unset($_SESSION['finalsave']);
     $_SESSION['success'] = "Item Removed Successfully!";
 }
 $cart_query = "SELECT *,pd.p_name,pd.p_price from cart_details as cd, product_details as pd where  cd.p_id=pd.p_id  and client_id=" . $client_query['client_id'] . "";
-
 $cart_query_execute = mysqli_query($conn, $cart_query);
 $query_row_no = mysqli_num_rows($cart_query_execute);
 
@@ -354,7 +355,7 @@ $query_row_no = mysqli_num_rows($cart_query_execute);
 
                                                         <?php
                                                         echo '
-                                                            <a href="#" class="btn btn-primary">
+                                                            <a href="checkout.php" class="btn btn-primary">
                                                             Proceed to Checkout <i class="fa fa-chevron-right"></i>
                                                             </a>
                                                             ';

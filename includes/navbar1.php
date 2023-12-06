@@ -177,7 +177,7 @@
                                         </li>
                                         <li class="user-footer" style="background-color: #54697e;">
                                             <div class="pull-left">
-                                                <a href="#" class="btn btn-info btn-lg">
+                                                <a href="your_order.php" class="btn btn-info btn-lg">
                                                 <i class="fa fa-cart-arrow-down"></i>
                                                 Your Orders</a>
                                             </div>
