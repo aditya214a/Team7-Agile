@@ -1,6 +1,7 @@
 <?php include 'includes/session.php'; ?>
 <?php include 'includes/header.php'; ?>
 <?php include 'includes/connection.php'; ?>
+
 <style type="text/css">
     .banner-area.bg-1 {
         background: rgba(0, 0, 0, 0) url("assets/images/banners/1.jpg") no-repeat scroll center center / cover;
@@ -222,19 +223,22 @@
 
                                                 if (@$waste_regi_output['client_id'] === $_SESSION['client_id']) {
                                             ?>
-                                                    <a href="profile.php" class="btn btn-success btn-lg mt-40"><i class="fa fa-credit-card-alt mr-2"></i> Visit Card Profile</a>
+                                                    <a href="profile.php" class="btn btn-success btn-lg mt-40"><i class="fa fa-credit-card-alt mr-2"></i> Visit Card Profile</a></br>
 
-                                                    <form action="downloadbarcode.php" method="post">
+                                                    <a href='#waste_history' class="btn btn-info btn-lg mt-20 sellwaste" data-toggle='modal' data-id=<?php echo $_SESSION['client_id'] ?>><i class='fa fa-search'></i> Waste History</a>
+
+                                                    <form action=" downloadbarcode.php" method="post">
                                                         <button type="submit" class="btn btn-info btn-lg mt-20" name="download"><i class="fa fa-download mr-2"></i>Barcode</button>
                                                     </form>
 
                                                     <form action="downloadwastefile.php" method="post">
-                                                        <button type="submit" class="btn btn-info btn-lg mt-20" name="download"><i class="fa fa-download mr-2"></i>Category List</button>
+                                                        <button type="submit" class="btn btn-info btn-lg mt-20" name="downloadcategory"><i class="fa fa-download mr-2"></i>Category List</button>
                                                     </form>
+
                                                 <?php
                                                 } else {
                                                 ?>
-                                                    <a href="#card_register" class="btn-common card-register brown-btn mt-40" style="background-color:brown;"><i class="fa fa-credit-card-alt mr-2"></i> Card Registration</a>
+                                                    <a href=" #card_register" class="btn-common card-register brown-btn mt-40" style="background-color:brown;"><i class="fa fa-credit-card-alt mr-2"></i> Card Registration</a>
                                                 <?php }
                                             } else {
                                                 ?>
@@ -248,8 +252,14 @@
                             </div>
                         </div>
                         <!--banner-area end-->
+
+                        <div style="display: flex; justify-content: center; margin-top:-8rem;">
+                            <!-- IMP Image Guide -->
+                            <img src="admin/uploaded_images/guide/infiguide.png" alt="Nature Image" class="img-fluid">
+                        </div>
+
                         <!-- Benefit Area Start -->
-                        <div class="benefit-area mt-80 sm-mt-65">
+                        <div class="benefit-area mt-60 sm-mt-65">
                             <div class="container">
                                 <div class="row">
                                     <!-- Shadow Image -->
@@ -328,6 +338,7 @@
     </div>
     <?php include 'includes/footer.php'; ?>
     <?php include 'includes/card_registration_modal.php'; ?>
+    <?php include 'includes/waste_history_modal.php'; ?>
     <?php include 'includes/scripts.php'; ?>
     <script>
         $(document).on('click', '.card-register', function(e) {
@@ -335,6 +346,40 @@
             $('#card_register').modal('show');
             return false;
         });
+
+        $(document).on('click', '.sellwaste', function(e) {
+            var id = $(this).data('id');
+            e.preventDefault();
+            getRow(id);
+        });
+
+        function getRow(id) {
+            $.ajax({
+                type: 'POST',
+                url: 'waste_history_row.php',
+                data: {
+                    id: id
+                },
+                success: function(response) {
+                    // Assuming response is an array of rows
+                    if (response.length > 0) {
+                        var modalBody = $('#hist_body');
+                        modalBody.empty(); // Clear previous content
+                        $.each(response, function(index, row) {
+                            // Assuming 'columnName' is a placeholder for your actual column name
+                            modalBody.append('<tr><td>' + row.waste_type + '</td><td>' + row.waste_weight + '</td><td>' + row.gained_points + '</td><td>' + row.penalized_points + '</td><td>' + row.improve_feedback + '</td><td>' + row.total_points + '</td></tr>');
+                        });
+                    } else {
+                        // Handle case when there is no data
+                        console.log('No data found');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('AJAX Error: ' + status + ' - ' + error);
+                }
+
+            });
+        }
     </script>
 </body>
 

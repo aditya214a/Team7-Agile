@@ -8,6 +8,10 @@ include 'includes/connection.php';
 if (empty($_SESSION['client_users'])) {
     header('location:login.php');
 }
+
+$waste_regi = "SELECT total_card_points from waste_deposit where client_id={$_SESSION['client_id']} LIMIT 1";
+$waste_regi_execute = mysqli_query($conn, $waste_regi);
+$waste_regi_output = mysqli_fetch_assoc($waste_regi_execute);
 ?>
 <html>
 <style type="text/css">
@@ -312,6 +316,12 @@ if (empty($_SESSION['client_users'])) {
                                                 </div>
                                                 <div class="row justify-content-center">
                                                     <h5 style="text-align:center;font-family:'Roboto', Helvetica, Arial, sans-serif;    color: #474343;"><?php echo $client_query['state']; ?></h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-4 pr-0">
+                                                <div class="row">
+                                                    <h3 class="col-6 detail-label" style="font-family:'Roboto', Helvetica, Arial, sans-serif;    color: #474343;">Total Points :</h3>
+                                                    <h3 class="col-5 text detail-label" style="font-family:'Roboto', Helvetica, Arial, sans-serif;    color: #474343;"><?php echo $waste_regi_output['total_card_points'] . ' pts'; ?></h3>
                                                 </div>
                                             </div>
                                             <div class="box-footer"><!-- box-footer Starts -->
