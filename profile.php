@@ -319,10 +319,15 @@ $waste_regi_output = mysqli_fetch_assoc($waste_regi_execute);
                                                 </div>
                                             </div>
                                             <div class="col-4 pr-0">
-                                                <div class="row">
-                                                    <h3 class="col-6 detail-label" style="font-family:'Roboto', Helvetica, Arial, sans-serif;    color: #474343;">Total Points :</h3>
-                                                    <h3 class="col-5 text detail-label" style="font-family:'Roboto', Helvetica, Arial, sans-serif;    color: #474343;"><?php echo $waste_regi_output['total_card_points'] . ' pts'; ?></h3>
-                                                </div>
+                                                <?php if ($waste_regi_output) {
+
+                                                ?>
+                                                    <div class="row">
+                                                        <h3 class="col-6 detail-label" style="font-family:'Roboto', Helvetica, Arial, sans-serif;    color: #474343;">Total Points :</h3>
+                                                        <h3 class="col-5 text detail-label" style="font-family:'Roboto', Helvetica, Arial, sans-serif;    color: #474343;"><?php echo $waste_regi_output['total_card_points'] . ' pts'; ?></h3>
+                                                    </div>
+                                                <?php } else {
+                                                } ?>
                                             </div>
                                             <div class="box-footer"><!-- box-footer Starts -->
                                                 <div class="pull-left footer-btn left"><!-- pull-left Starts -->

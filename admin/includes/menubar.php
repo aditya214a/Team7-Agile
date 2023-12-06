@@ -58,6 +58,8 @@
       <?php if ($power_row['power'] == 'General User') { ?>
         <li><a href="iws_card_history"><i class="fa fa-credit-card"></i> <span>IWS Card History</span></a></li>
       <?php } ?>
+      <li class="header">PRODUCT DETAILS</li>
+      <li><a href="product_details.php"><i class="fa fa-ravelry"></i> <span>Manage Product</span></a></li>
     </ul>
   </section>
   <!-- /.sidebar -->

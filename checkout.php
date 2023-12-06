@@ -124,9 +124,6 @@ if (isset($_POST['order_now'])) {
             $check_date_now_db = date('Y-m-d h:i', strtotime($order_delete['order_date']));
             if ($check_date_now_db == $check_date_now) {
                 $del_query = "DELETE FROM client_orders WHERE order_date like '$check_date_now_db%'";
-                unset($_SESSION['final']);
-                unset($_SESSION['finalsave']);
-                unset($_SESSION['check_price']);
                 mysqli_query($conn, $del_query);
             } else {
             }
@@ -456,17 +453,24 @@ if (isset($_POST['order_now'])) {
                                                     ?>
                                                         <p class="ml-4">You Don't Have Account! To Apply For Waste Selling Infigreen Card 👇</p>
                                                         <div class="row justify-content-center">
-                                                            <a href="sell_waste.php" style="font-size: larger;" class="btn btn-success btn-lg mb-3"><i class="fa fa-credit-card"></i> Waste Selling Card</a>
+                                                            <a href="sell_waste.php" class="btn btn-success btn-lg mb-3"><i class="fa fa-credit-card"></i> IWS Card</a>
                                                         </div>
                                                     <?php } ?>
                                                 </div>
                                             </div>
 
                                             <div class="box-footer"><!-- box-footer Starts -->
+                                                <?php
+                                                $waste_regi = "SELECT total_card_points from waste_deposit where client_id={$_SESSION['client_id']} LIMIT 1";
+                                                $waste_regi_execute = mysqli_query($conn, $waste_regi);
+                                                $waste_regi_output = mysqli_fetch_assoc($waste_regi_execute);
 
-                                                <div class="pull-right footer-btn right pr-3"><!-- pull-left Starts -->
-                                                    <input type="submit" id="order_now" name="order_now" class="btn btn-success" value="Order Now">
-                                                </div><!-- pull-left Ends -->
+                                                if ($waste_regi_output) { ?>
+                                                    <div class="pull-right footer-btn right pr-3"><!-- pull-left Starts -->
+                                                        <input type="submit" id="order_now" name="order_now" class="btn btn-success" value="Order Now">
+                                                    </div><!-- pull-left Ends -->
+                                                <?php } else {
+                                                } ?>
                                             </div><!-- box-footer Ends -->
                                         </div>
                                     </div>

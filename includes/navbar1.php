@@ -131,7 +131,7 @@
         <!-- Right Navbar -->
         <div class="right-nav container-fluid">
             <!-- Search Part -->
-            <form method="POST" class="d-flex" action="#">
+            <form method="POST" class="d-flex" action="search.php">
                 <input name="search_keyword" class="form-control me-2" type="search" placeholder="Search Product" aria-label="Search">
                 <button name="submit_search" class="btn btn-success" type="submit">Search</button>
             </form>
