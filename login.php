@@ -1,7 +1,7 @@
 <?php
-include 'includes/connection.php';
+// include 'includes/connection.php';
 
-session_start();
+// session_start();
 
 $uname = @$_POST['username'];
 $pass = @$_POST['password'];
