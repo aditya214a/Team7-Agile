@@ -35,7 +35,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../mpdf/mpdf',
             'aliases' => array(),
-            'dev_requirement' => false,
+            'dev_requirement' => true,
         ),
         'mpdf/psr-http-message-shim' => array(
             'pretty_version' => 'v2.0.1',
@@ -44,7 +44,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../mpdf/psr-http-message-shim',
             'aliases' => array(),
-            'dev_requirement' => false,
+            'dev_requirement' => true,
         ),
         'mpdf/psr-log-aware-trait' => array(
             'pretty_version' => 'v3.0.0',
@@ -53,7 +53,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../mpdf/psr-log-aware-trait',
             'aliases' => array(),
-            'dev_requirement' => false,
+            'dev_requirement' => true,
         ),
         'myclabs/deep-copy' => array(
             'pretty_version' => '1.11.1',
@@ -62,7 +62,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../myclabs/deep-copy',
             'aliases' => array(),
-            'dev_requirement' => false,
+            'dev_requirement' => true,
         ),
         'nikic/php-parser' => array(
             'pretty_version' => 'v4.17.1',
@@ -80,7 +80,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../paragonie/random_compat',
             'aliases' => array(),
-            'dev_requirement' => false,
+            'dev_requirement' => true,
         ),
         'phar-io/manifest' => array(
             'pretty_version' => '2.0.3',
@@ -161,7 +161,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../picqer/php-barcode-generator',
             'aliases' => array(),
-            'dev_requirement' => false,
+            'dev_requirement' => true,
         ),
         'psr/http-message' => array(
             'pretty_version' => '2.0',
@@ -170,7 +170,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../psr/http-message',
             'aliases' => array(),
-            'dev_requirement' => false,
+            'dev_requirement' => true,
         ),
         'psr/log' => array(
             'pretty_version' => '3.0.0',
@@ -179,7 +179,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../psr/log',
             'aliases' => array(),
-            'dev_requirement' => false,
+            'dev_requirement' => true,
         ),
         'sebastian/cli-parser' => array(
             'pretty_version' => '1.0.1',
@@ -332,7 +332,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../setasign/fpdi',
             'aliases' => array(),
-            'dev_requirement' => false,
+            'dev_requirement' => true,
         ),
         'tecnickcom/tcpdf' => array(
             'pretty_version' => '6.6.5',
