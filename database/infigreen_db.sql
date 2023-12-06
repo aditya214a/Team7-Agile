@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 17, 2023 at 05:28 AM
+-- Generation Time: Dec 06, 2023 at 11:32 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -98,7 +98,7 @@ CREATE TABLE `client_details` (
 
 INSERT INTO `client_details` (`client_id`, `username`, `email`, `contact_no`, `residential_address`, `city`, `state`, `image`, `password`, `status`, `activate_code`, `reset_code`, `created_on_date`) VALUES
 (33, 'dhwaniltest', 'dhwanil@test.com', '9456876123', '122 Graham St', 'Jersey City', 'NJ', 'profile.jpg', '111cddd7d2457c126edac3960206fb7d', 1, NULL, NULL, '2023-10-17'),
-(34, 'adityatest', 'aditya@test.com', '1548795268', '546 North st', 'Jersey City', 'NJ', 'profile.jpg', 'c2d5000465bbd132dccecb32e13fa6e0', 0, NULL, NULL, '2023-10-17'),
+(34, 'adityatest', 'aditya@test.com', '1548795268', '546 North st', 'Jersey City', 'NJ', 'profile.jpg', 'c2d5000465bbd132dccecb32e13fa6e0', 1, NULL, NULL, '2023-10-17'),
 (35, 'infigreentest', 'infigreen@test.com', '9845496318', '45 Hague St', 'Dallas', 'TX', 'krishnaa.jpg', 'bf269f5a791cc5ed7d0bfdeea44f6358', 1, NULL, NULL, '2023-10-17'),
 (39, 'Jaishreeram', 'jaishreeram@abcd.com', 'Null', 'Null', 'Null', 'Null', 'profile.jpg', '3db66ceb605c1bcb779c63e180c4f2d0', 0, '2nMSRXWYckFZ', 'Null', '2023-10-19'),
 (40, 'Testuser2', 'testuser2@infigreen.com', 'Null', 'Null', 'Null', 'Null', 'profile.jpg', '4159a0a75b2f427763067baf4cd7b9ef', 1, 'qdZS4zioE26U', 'Null', '2023-10-20');
@@ -116,11 +116,23 @@ CREATE TABLE `client_orders` (
   `p_id` bigint(20) NOT NULL,
   `order_qty` varchar(255) NOT NULL,
   `discount` varchar(255) NOT NULL,
-  `coupon_discount` varchar(255) NOT NULL,
   `order_total_amt` varchar(255) NOT NULL,
   `order_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `order_delivered_date` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `client_orders`
+--
+
+INSERT INTO `client_orders` (`order_id`, `client_id`, `order_status_id`, `p_id`, `order_qty`, `discount`, `order_total_amt`, `order_date`, `order_delivered_date`) VALUES
+(11, 34, 2, 10, '1', '5', '140', '2023-12-06 11:05:22', 'NULL'),
+(12, 34, 2, 10, '1', '5', '140', '2023-12-06 11:06:07', 'NULL'),
+(13, 34, 2, 10, '1', '5', '140', '2023-12-06 11:07:18', 'NULL'),
+(14, 34, 2, 10, '1', '5', '140', '2023-12-06 11:07:25', 'NULL'),
+(15, 34, 2, 10, '1', '5', '140', '2023-12-06 11:08:36', 'NULL'),
+(16, 34, 2, 10, '1', '5', '140', '2023-12-06 11:09:20', 'NULL'),
+(17, 34, 2, 10, '1', '5', '140', '2023-12-06 11:29:36', 'NULL');
 
 -- --------------------------------------------------------
 
@@ -147,37 +159,31 @@ INSERT INTO `contact_details` (`contact_id`, `client_id`, `subject`, `message`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `coupon_details`
+-- Table structure for table `iws_card_history`
 --
 
-CREATE TABLE `coupon_details` (
-  `coupon_id` bigint(20) NOT NULL,
-  `p_id` bigint(20) NOT NULL,
-  `coupon_price` varchar(255) NOT NULL,
-  `coupon_code` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `iws_card_details`
---
-
-CREATE TABLE `iws_card_details` (
-  `iws_card_id` bigint(20) NOT NULL,
+CREATE TABLE `iws_card_history` (
+  `iws_card_history_id` bigint(20) NOT NULL,
   `admin_id` bigint(20) NOT NULL,
   `waste_disposal_id` bigint(20) NOT NULL,
-  `card_points` int(20) NOT NULL,
-  `waste_weight` decimal(10,0) NOT NULL,
-  `deposit_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `waste_type` varchar(255) NOT NULL,
+  `waste_weight` decimal(20,2) NOT NULL,
+  `gained_points` int(20) NOT NULL,
+  `penalized_points` int(20) NOT NULL,
+  `improve_feedback` text NOT NULL,
+  `total_points` int(20) NOT NULL,
+  `history_created_date` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `iws_card_details`
+-- Dumping data for table `iws_card_history`
 --
 
-INSERT INTO `iws_card_details` (`iws_card_id`, `admin_id`, `waste_disposal_id`, `card_points`, `waste_weight`, `deposit_time`) VALUES
-(1, 1, 3, 50, '2', '2023-11-02 07:51:37');
+INSERT INTO `iws_card_history` (`iws_card_history_id`, `admin_id`, `waste_disposal_id`, `waste_type`, `waste_weight`, `gained_points`, `penalized_points`, `improve_feedback`, `total_points`, `history_created_date`) VALUES
+(1, 1, 6, 'Recyclable Waste, Others', '3.25', 60, 5, 'no', 55, '2023-12-06 14:28:42'),
+(2, 1, 6, 'General Waste, Recyclable Waste', '5.00', 80, 30, 'no', 50, '2023-12-06 14:32:48'),
+(3, 1, 6, 'Recyclable Waste, E-Waste', '2.00', 0, 0, 'no', 0, '2023-12-06 14:33:20'),
+(4, 1, 6, 'General Waste', '2.00', 45, 10, 'no', 35, '2023-12-06 14:33:55');
 
 -- --------------------------------------------------------
 
@@ -190,6 +196,14 @@ CREATE TABLE `order_status` (
   `order_status` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `order_status`
+--
+
+INSERT INTO `order_status` (`order_status_id`, `order_status`) VALUES
+(1, 'Delivered'),
+(2, 'On The Way');
+
 -- --------------------------------------------------------
 
 --
@@ -200,11 +214,23 @@ CREATE TABLE `payment_status` (
   `payment_id` bigint(20) NOT NULL,
   `order_id` bigint(20) NOT NULL,
   `client_id` bigint(20) NOT NULL,
-  `payment_mode` varchar(255) NOT NULL,
   `payment_status` text NOT NULL DEFAULT 'Not Paid',
   `amount_paid` varchar(255) NOT NULL,
   `payment_date` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `payment_status`
+--
+
+INSERT INTO `payment_status` (`payment_id`, `order_id`, `client_id`, `payment_status`, `amount_paid`, `payment_date`) VALUES
+(7, 11, 34, 'Paid', '140', '12/06/2023'),
+(8, 12, 34, 'Paid', '140', '12/06/2023'),
+(9, 13, 34, 'Paid', '140', '12/06/2023'),
+(10, 14, 34, 'Paid', '140', '12/06/2023'),
+(11, 15, 34, 'Paid', '140', '12/06/2023'),
+(12, 16, 34, 'Paid', '140', '12/06/2023'),
+(13, 17, 34, 'Paid', '140', '12/06/2023');
 
 -- --------------------------------------------------------
 
@@ -306,10 +332,10 @@ INSERT INTO `product_type` (`p_type_id`, `p_type_title`, `p_type_image`, `p_type
 CREATE TABLE `waste_deposit` (
   `waste_disposal_id` bigint(20) NOT NULL,
   `client_id` bigint(20) NOT NULL,
-  `waste_uniq_id` bigint(20) NOT NULL,
-  `waste_type` varchar(25) NOT NULL,
-  `waste_details` text DEFAULT NULL,
-  `status` varchar(15) NOT NULL DEFAULT 'Not Approved',
+  `waste_uniq_id` varchar(255) NOT NULL,
+  `total_card_points` int(20) NOT NULL,
+  `waste_type` varchar(200) NOT NULL,
+  `waste_type_other` varchar(200) NOT NULL,
   `request_date` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -317,9 +343,9 @@ CREATE TABLE `waste_deposit` (
 -- Dumping data for table `waste_deposit`
 --
 
-INSERT INTO `waste_deposit` (`waste_disposal_id`, `client_id`, `waste_uniq_id`, `waste_type`, `waste_details`, `status`, `request_date`) VALUES
-(2, 33, 1234567890, 'Household Waste, Agricult', 'NULL', 'Not Approved', '2023-10-31 09:53:15'),
-(3, 33, 125789, 'Household Waste, Medical ', 'all waste.', 'Not Approved', '2023-11-02 11:37:36');
+INSERT INTO `waste_deposit` (`waste_disposal_id`, `client_id`, `waste_uniq_id`, `total_card_points`, `waste_type`, `waste_type_other`, `request_date`) VALUES
+(2, 33, '35445672', 0, 'Household Waste, Agricult', '', '2023-10-31 09:53:15'),
+(6, 34, 'INFIG274827', 1260, 'General Waste, E-Waste, Hazardous Waste, Others, Medical Waste', 'Agriculture Waste, Silver Waste', '2023-12-05 10:40:24');
 
 --
 -- Indexes for dumped tables
@@ -362,19 +388,12 @@ ALTER TABLE `contact_details`
   ADD KEY `contact_details_fbk` (`client_id`);
 
 --
--- Indexes for table `coupon_details`
+-- Indexes for table `iws_card_history`
 --
-ALTER TABLE `coupon_details`
-  ADD PRIMARY KEY (`coupon_id`),
-  ADD KEY `p_id` (`p_id`);
-
---
--- Indexes for table `iws_card_details`
---
-ALTER TABLE `iws_card_details`
-  ADD PRIMARY KEY (`iws_card_id`),
-  ADD KEY `iws_card_fbk` (`admin_id`),
-  ADD KEY `iws_card_fbk2` (`waste_disposal_id`);
+ALTER TABLE `iws_card_history`
+  ADD PRIMARY KEY (`iws_card_history_id`),
+  ADD KEY `admin_fbk` (`admin_id`),
+  ADD KEY `waste_dis_fbk` (`waste_disposal_id`);
 
 --
 -- Indexes for table `order_status`
@@ -416,6 +435,7 @@ ALTER TABLE `product_type`
 --
 ALTER TABLE `waste_deposit`
   ADD PRIMARY KEY (`waste_disposal_id`),
+  ADD UNIQUE KEY `waste_uniq_id` (`waste_uniq_id`),
   ADD KEY `waste_disposal_details_fbk` (`client_id`);
 
 --
@@ -432,7 +452,7 @@ ALTER TABLE `admin_details`
 -- AUTO_INCREMENT for table `cart_details`
 --
 ALTER TABLE `cart_details`
-  MODIFY `cart_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `cart_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `client_details`
@@ -444,7 +464,7 @@ ALTER TABLE `client_details`
 -- AUTO_INCREMENT for table `client_orders`
 --
 ALTER TABLE `client_orders`
-  MODIFY `order_id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `order_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `contact_details`
@@ -453,28 +473,22 @@ ALTER TABLE `contact_details`
   MODIFY `contact_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `coupon_details`
+-- AUTO_INCREMENT for table `iws_card_history`
 --
-ALTER TABLE `coupon_details`
-  MODIFY `coupon_id` bigint(20) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `iws_card_details`
---
-ALTER TABLE `iws_card_details`
-  MODIFY `iws_card_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `iws_card_history`
+  MODIFY `iws_card_history_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `order_status`
 --
 ALTER TABLE `order_status`
-  MODIFY `order_status_id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `order_status_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `payment_status`
 --
 ALTER TABLE `payment_status`
-  MODIFY `payment_id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `payment_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `product_category`
@@ -498,7 +512,7 @@ ALTER TABLE `product_type`
 -- AUTO_INCREMENT for table `waste_deposit`
 --
 ALTER TABLE `waste_deposit`
-  MODIFY `waste_disposal_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `waste_disposal_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
@@ -526,17 +540,11 @@ ALTER TABLE `contact_details`
   ADD CONSTRAINT `contact_details_fbk` FOREIGN KEY (`client_id`) REFERENCES `client_details` (`client_id`);
 
 --
--- Constraints for table `coupon_details`
+-- Constraints for table `iws_card_history`
 --
-ALTER TABLE `coupon_details`
-  ADD CONSTRAINT `coupon_details_ibfk_1` FOREIGN KEY (`p_id`) REFERENCES `product_details` (`p_id`);
-
---
--- Constraints for table `iws_card_details`
---
-ALTER TABLE `iws_card_details`
-  ADD CONSTRAINT `iws_card_fbk` FOREIGN KEY (`admin_id`) REFERENCES `admin_details` (`admin_id`),
-  ADD CONSTRAINT `iws_card_fbk2` FOREIGN KEY (`waste_disposal_id`) REFERENCES `waste_deposit` (`waste_disposal_id`);
+ALTER TABLE `iws_card_history`
+  ADD CONSTRAINT `admin_fbk` FOREIGN KEY (`admin_id`) REFERENCES `admin_details` (`admin_id`),
+  ADD CONSTRAINT `waste_dis_fbk` FOREIGN KEY (`waste_disposal_id`) REFERENCES `waste_deposit` (`waste_disposal_id`);
 
 --
 -- Constraints for table `payment_status`
