@@ -2404,7 +2404,12 @@
     "dev": true,
     "dev-package-names": [
         "doctrine/instantiator",
+        "mpdf/mpdf",
+        "mpdf/psr-http-message-shim",
+        "mpdf/psr-log-aware-trait",
+        "myclabs/deep-copy",
         "nikic/php-parser",
+        "paragonie/random_compat",
         "phar-io/manifest",
         "phar-io/version",
         "phpunit/php-code-coverage",
@@ -2413,6 +2418,9 @@
         "phpunit/php-text-template",
         "phpunit/php-timer",
         "phpunit/phpunit",
+        "picqer/php-barcode-generator",
+        "psr/http-message",
+        "psr/log",
         "sebastian/cli-parser",
         "sebastian/code-unit",
         "sebastian/code-unit-reverse-lookup",
@@ -2429,6 +2437,7 @@
         "sebastian/resource-operations",
         "sebastian/type",
         "sebastian/version",
+        "setasign/fpdi",
         "theseer/tokenizer"
     ]
 }

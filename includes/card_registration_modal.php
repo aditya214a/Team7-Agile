@@ -50,9 +50,12 @@
 </div>
 
 <script>
+    // Add an event listener to the "Others" checkbox
     document.getElementById('others').addEventListener('change', function() {
+        // Get the text box element
         var otherCategoryTextBox = document.getElementById('otherCategory');
 
+        // Toggle the display property based on the checkbox state
         otherCategoryTextBox.style.display = this.checked ? 'block' : 'none';
     });
 </script>

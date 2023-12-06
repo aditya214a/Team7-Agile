@@ -1,10 +1,10 @@
 {
     "require-dev": {
-        "phpunit/phpunit": "^9.6"
+        "phpunit/phpunit": "^9.6",
+        "picqer/php-barcode-generator": "^2.0.0",
+        "mpdf/mpdf": "^8.0"
     },
     "require": {
-        "picqer/php-barcode-generator": "^2.4",
-        "mpdf/mpdf": "^8.0",
         "tecnickcom/tcpdf": "^6.6"
     }
 }

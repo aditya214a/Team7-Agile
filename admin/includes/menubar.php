@@ -56,7 +56,7 @@
       <?php } ?>
       <!-- if general user -->
       <?php if ($power_row['power'] == 'General User') { ?>
-        <li><a href="iws_card_history.php"><i class="fa fa-credit-card"></i> <span>IWS Card History</span></a></li>
+        <li><a href="iws_card_history"><i class="fa fa-credit-card"></i> <span>IWS Card History</span></a></li>
       <?php } ?>
     </ul>
   </section>
