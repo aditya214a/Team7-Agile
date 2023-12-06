@@ -14,10 +14,10 @@ if (isset($_POST['login'])) {
 	$user_result = mysqli_query($conn, $user_query);
 	$user_pass_result = mysqli_query($conn, $user_pass_query);
 	$check_activation = mysqli_fetch_assoc($user_result);
-	if (mysqli_num_rows($user_result) != 1) {
-		$_SESSION['error'] = "Username is Invalid!";
-	} else if (mysqli_num_rows($user_pass_result) != 1) {
-		$_SESSION['error'] = "Password is Invalid!";
+	if (mysqli_num_rows($user_result) != 1 || mysqli_num_rows($user_pass_result) != 1) {
+		$_SESSION['error'] = "Username or Password is Invalid!";
+		// } else if (mysqli_num_rows($user_pass_result) != 1) {
+		// 	$_SESSION['error'] = "Password is Invalid!";
 	} else if ($check_activation['status'] == '0') {
 		$_SESSION['error'] = "Your Account is Not Activated! Please Activate It!";
 	} else {
