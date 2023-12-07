@@ -7,6 +7,7 @@ Agile Group Project
 <li>Install the Xampp in your system, To know about installation process you can watch this video for help:<a href='https://youtu.be/7qVP5de7hAY?si=cDwTG1Vo6YYYhWoz' > LInk to video</a></li>
 <li>Click "Start" on Apache and MySQL</li>
 <li>Clone this reposotry "C:\xampp\htdocs\"</li>
+<li>IMP Server Config things : Open XAMP Server -> Apache -> click on Config button -> php.ini -> change ";extension=gd" to "extension=gd" remove semicolon at start. Then restart the server.</li>
 <li>On Xamp server click on Admin button besides MySQL</li>
 <li>Create database by clicking on "+new" on the left side of the screen</li>
 <li>Name the Database 'infigreen_db' in the textbox having filler text 'Database name' and click on create.</li>
